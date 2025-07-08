@@ -269,8 +269,21 @@
     }
 
     .grid iframe:hover {
-    transform: scale(1.03);
+      transform: scale(1.03);
     }
+    .grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+      object-fit: cover;
+    }
+
+    .grid img:hover {
+      transform: scale(1.03);
+    }
+
 
 
     .bg-overlay {
