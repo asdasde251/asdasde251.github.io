@@ -34,8 +34,9 @@
         opacity: 0;
         display: none;
       }
-      }
-/* ... your CSS ... */
+    }
+
+    /* ... your CSS ... */
     * {
       margin: 0;
       padding: 0;
@@ -230,6 +231,7 @@
 
     nav a:hover {
       color: grey;
+      transform: scale(1.1);
     }
 
     section {
@@ -247,26 +249,76 @@
     #about {
       background: rgba(255, 255, 255, 0.02);
       padding: 60px 30px;
-      color: #ffffff;
+      color: rgb(0, 204, 255);
       font-size: 1.1rem;
       line-height: 1.9;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+      box-shadow: 0 0 20px rgba(248, 248, 248, 0.1);
       margin-top: 60px;
-      text-shadow: 0 0 8px rgb(0, 0, 0);
+      text-shadow: 0 0 0 rgba(21, 255, 0, 0);
     }
 
     #about h2 {
       font-size: 2.5rem;
       color: rgb(255, 255, 255);
-      text-align: center;
       margin-bottom: 40px;
-      text-shadow: 0 0 8px rgb(0, 225, 255);
+
     }
 
     #about p {
       margin-bottom: 20px;
       text-align: justify;
+    }
+
+    .about-toggle {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .about-toggle button {
+      background: transparent;
+      border: 2px solid rgb(0, 204, 255);
+      color: rgb(0, 204, 255);
+      padding: 8px 16px;
+      margin: 0 10px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 16px rgb(0, 204, 255);
+    }
+
+    .about-toggle button.active {
+      background: rgb(0, 204, 255);
+      color: black;
+    }
+
+    .about-toggle button:hover {
+      transform: scale(1.1);
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      transform: translateX(100px);
+      transition: all 0.6s ease;
+      /* REMOVE absolute positioning */
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+    }
+
+    .about-content.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .about-img {
+      width: 100px;
+      border-radius: 112px;
     }
 
     /* === Project Gallery Styling === */
@@ -278,13 +330,10 @@
 
     .project-gallery h3 {
       margin: 40px 0 20px;
-      color: cyan;
-      text-shadow: 0 0 6px cyan;
+      color: white;
+      text-shadow: 0 0 6px white;
     }
-    .grid iframe:first-child {
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); /* golden glow */
-      border: 2px solid gold;
-    }
+
 
 
     .grid {
@@ -297,8 +346,8 @@
     .grid iframe {
       width: 100%;
       aspect-ratio: 16/9;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+      border-radius: 20px;
+      box-shadow: 0 0 112px rgb(255, 0, 0);
       transition: transform 0.3s ease;
       border: none;
     }
@@ -306,17 +355,18 @@
     .grid iframe:hover {
       transform: scale(1.03);
     }
+
     .grid img {
       width: 100%;
       height: auto;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 110px rgb(255, 0, 0);
       transition: transform 0.3s ease;
       object-fit: cover;
     }
 
     .grid img:hover {
-      transform: scale(1.03);
+      transform: scale(1.1);
     }
 
 
@@ -340,7 +390,7 @@
       padding: 15px 30px;
       background: rgba(255, 255, 255, 0.03);
       border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 112px rgb(0, 225, 255);
     }
 
     .support-category h3 {
@@ -373,7 +423,7 @@
       padding: 15px 30px;
       background: rgba(255, 255, 255, 0.03);
       border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.08);
+      box-shadow: 0 0 112px rgb(255, 0, 221);
     }
 
     .contact-block h3 {
@@ -390,12 +440,64 @@
     .contact-block a:hover {
       color: cyan;
     }
+
+    /* 📱 Tablet + Mobile adjustments */
+    @media (max-width: 1024px) {
+      .panel {
+        width: 100%;
+        height: auto;
+      }
+
+      .panel img {
+        max-width: 80%;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .about-me {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .navbar {
+        flex-direction: column;
+        padding: 10px;
+      }
+
+      .navbar a {
+        margin: 5px 0;
+        font-size: 14px;
+      }
+    }
+
+    /* 📱 Mobile-specific (super small screens like 480px) */
+    @media (max-width: 600px) {
+      .panel img {
+        max-width: 100%;
+      }
+
+      .about-me p {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .toggle-buttons {
+        flex-direction: column;
+      }
+
+      .toggle-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
   </style>
 </head>
 
 <body>
- <div id="screen-warning">
-    <strong> 💡 For love at first sight: View this site in <strong>{maximized Chrome 100% zoom on a 1440×900 resolution}</strong> for the perfect
+  <div id="screen-warning">
+    <strong> 💡 For love at first sight: View this site in <strong>{maximized Chrome 100% zoom on a 1440×900
+        resolution}</strong> for the perfect
       image alignment. Other screen versions coming soon 🚀</strong>
   </div>
   <header>
@@ -412,11 +514,11 @@
     <img src="images/background.png" class="bg-overlay" alt="background">
 
     <div class="panel left-panel">
-      <img src="images/designer.png" alt="Left">
+      <img src="images/designer.webp" alt="Left">
     </div>
 
     <div class="panel right-panel">
-      <img src="images/coder.png" alt="Right">
+      <img src="images/coder.webp" alt="Right">
     </div>
 
     <div class="center-trigger">
@@ -448,66 +550,146 @@
   </nav>
 
   <section id="about">
-    <h2>As-salamu alaykum</h2>
-    <p>
-      Hey there, I'm Muhammad Umer Khan — just another guy trying to build the future... with a keyboard, a cracked
-      screen, and countless half-finished projects that somehow lead to something meaningful.
-    </p>
-    <p>
-      I don’t come from a shiny background or a family of engineers. A few years ago, my academic path hit pause for
-      nearly four years due to a deeply personal commitment. But with the mercy of Allah, I was chosen for something
-      more meaningful than a school report card. That time didn’t take me off track — it rewired me. I came back not
-      behind… but with a sharper compass.
-    </p>
-    <p>
-      Since then, I've been on a quiet mission: to learn how to build anything I imagine. I’m not a master in any tool —
-      not yet. I haven’t written full production websites or shipped polished software to users. But I’ve built things
-      that work. And I’ve learned enough about design, development, AI, and automation to know which fruit grows on
-      which tree — so when I need one, I can pluck it and start peeling, instead of first Googling what a mango even
-      looks like.
-    </p>
-    <p>
-      I’ve always believed that curiosity is a superpower. If I don’t know something, give me a few hours (and maybe a
-      sandwich), and I’ll figure it out. I’ve taught myself many thing from programming to design to building offline AI
-      assistants that can talk like Tony Stark’s JARVIS — not because I had to, but because I wanted to.
-    </p>
-    <p>
-      I don’t fit in a neat label. I’m a designer when I’m inspired, a developer when I’m challenged, a visionary when I
-      dream, and a student every single day. I don’t build for likes. I build because I need to get ideas out of my head
-      before they explode.
-    </p>
-    <p>
-      I enjoy solitude, not because I’m antisocial, but because that’s when I create my best work. If you’ve ever stayed
-      up till 3 AM stuck on a bug or perfecting a visual effect with your headphones on and the world turned off — yeah,
-      we’d get along.
-    </p>
-    <p>
-      I don’t consider myself special. I just show up every day — sometimes with clarity, sometimes in chaos — and keep
-      going. That’s where growth happens. That’s where you find your real self.
-    </p>
-    <p>
-      Oh, and before you ask — yes, I’m single. No, I’m not taking proposals unless it involves building a robot
-      together.
-    </p>
-    <p>
-      This portfolio isn’t a trophy room. It’s a journal. It’s what I’ve learned, built, and explored.what I’ve tried,
-      tested, failed at, and figured out. Whether you’re an admissions officer, a future teammate, or a random visitor,
-      I hope you see not just projects — but a pattern: someone who doesn’t wait for permission to love, learn, fail,
-      improve, and try again. If you're here reading this, you're already part of my journey. So thank you
-    </p>
-    <p>
-      As for the future? I don’t know where this road leads, but I know Who’s guiding me.
-      <br>Let’s see how far we can go, in sha' Allah.
-    </p>
-    <p>
-      Everything you see here — the projects, the skills, the supporters, the failures, the half-wins and hard-earned growth — this is just the beginning. This page isn’t a finished portrait. It’s a moving mirror. I’m updating it as I evolve, because I believe in documenting the process, not just the success.
-    </p>
-    <p>
-      Some of these words may sound like hyperbole — maybe they are. But not because I want to impress you. I write like the person I’m becoming, not the one I used to be. This portfolio is a future version of myself, speaking through the present. I’m not here to show off — I’m here to remind myself who I’m supposed to be.
-    </p>
-    <p>
-      Come back sometime — you might find a better version of me next time you scroll.
-    </p>
+    <h2>About Me</h2>
+    <div class="about-toggle">
+      <button id="btn-professional" class="active">Professional</button>
+      <button id="btn-childish">Childish</button>
+    </div>
+
+    <!-- Professional Content -->
+    <div id="about-professional" class="about-content show">
+      <img src="images/designer - Copy.png" alt="Professional" class="about-img" style="width: 50px;">
+      <div class="about-text">
+        <p>
+          I’m Muhammad Umer Khan — a self-taught designer, developer, and builder with a passion for
+          turning ideas into
+          working systems. My journey hasn’t been linear: I paused academics for four years to commit to a higher
+          purpose, and came back with sharper focus and resilience.
+
+        </p>
+        <p>
+          Since then, I’ve been learning across design, web development, AI, and automation — not
+          through classrooms,
+          but through building. From crafting interfaces to experimenting with offline AI assistants inspired by JARVIS,
+          I’ve discovered how to connect creativity with code.
+        </p>
+        <P>
+          I’m not defined by one label. I’m a designer when I need aesthetics, a developer when I
+          need function,
+          a problem-solver when I’m challenged, and a learner every single day. I thrive in solitude where I can
+          create my best work, but I value collaboration that pushes boundaries.
+        </P>
+        <P>
+          What drives me is curiosity — the ability to pick up a tool, learn it, and use it to build
+          something
+          meaningful.
+          My portfolio is not a showcase of perfection, but a record of growth: projects tested, failed, improved,
+          and shipped.
+        </P>
+        <P>
+          I believe consistency beats talent, process shapes outcome, and with Allah’s guidance, no
+          effort is wasted.
+          staThis page isn’t a final portrait — it’s a mirror of my evolving journey.
+        </P>
+        <!-- keep rest of your professional content here -->
+      </div>
+    </div>
+
+    <!-- Childish Content -->
+    <div id="about-childish" class="about-content">
+      <img src="images/childish.png" alt="Childish" class="about-img" style="width: 50px;">
+      <div class="about-text">
+        <p>
+          👋 Hey there, I'm Muhammad Umer Khan — just another guy trying to build the future... with a ⌨️ keyboard, a 📱
+          cracked
+          screen, and countless half-finished projects 🛠️ that somehow lead to something meaningful 🌌.
+        </p>
+        <p>
+          I don’t come from a shiny ✨ background or a family of engineers ⚙️. A few years ago, my academic path 📚 hit
+          pause ⏸️ for
+          nearly four years due to a deeply personal commitment 🙏. But with the mercy of Allah ☝️, I was chosen for
+          something
+          more meaningful than a school report card 📑. That time didn’t take me off track 🚉 — it rewired me 🔌. I came
+          back not
+          behind… but with a sharper compass 🧭.
+        </p>
+        <p>
+          Since then, I've been on a quiet mission 🤫: to learn how to build anything I imagine 💡. I’m not a master in
+          any tool —
+          not yet 🕰️. I haven’t written full production websites 🌐 or shipped polished software 📦 to users. But I’ve
+          built things
+          that work ⚡. And I’ve learned enough about design 🎨, development 💻, AI 🤖, and automation 🔄 to know which
+          fruit 🍎 grows on
+          which tree 🌳 — so when I need one, I can pluck it 🍋 and start peeling, instead of first Googling what a
+          mango 🥭 even
+          looks like.
+        </p>
+        <p>
+          I’ve always believed that curiosity 🔍 is a superpower 🦸. If I don’t know something, give me a few hours ⏳
+          (and maybe a
+          🥪 sandwich), and I’ll figure it out. I’ve taught myself many things from programming 👨‍💻 to design 🖌️ to
+          building offline AI
+          assistants that can talk like Tony Stark’s JARVIS 🛰️ — not because I had to, but because I wanted to ❤️.
+        </p>
+        <p>
+          I don’t fit in a neat label 🏷️. I’m a designer 🎨 when I’m inspired 💭, a developer 👨‍💻 when I’m challenged
+          🏗️, a visionary 👁️
+          when I dream 🌙, and a student 📖 every single day. I don’t build for likes 👍. I build because I need to get
+          ideas 💡 out of my head
+          before they explode 💥.
+        </p>
+        <p>
+          I enjoy solitude 🌌, not because I’m antisocial 🚫👥, but because that’s when I create my best work ✍️. If
+          you’ve ever stayed
+          up till 3 AM 🌃 stuck on a bug 🐞 or perfecting a visual effect 🎬 with your headphones on 🎧 and the world
+          turned off 🌍❌ —
+          yeah, we’d get along 🤝.
+        </p>
+        <p>
+          I don’t consider myself special 🌱. I just show up every day 🌞 — sometimes with clarity 🔮, sometimes in
+          chaos 🌪️ — and keep
+          going ➡️. That’s where growth 🌱 happens. That’s where you find your real self 🪞.
+        </p>
+        <p>
+          Oh, and before you ask — yes, I’m single 💔. No, I’m not taking proposals 💍 unless it involves building a
+          robot 🤖 together 🤓.
+        </p>
+        <p>
+          This portfolio isn’t a trophy room 🏆. It’s a journal 📓. It’s what I’ve learned 📚, built 🔨, and explored
+          🗺️. What I’ve tried 🏹,
+          tested 🧪, failed at ❌, and figured out ✅. Whether you’re an admissions officer 🏛️, a future teammate 🤝, or
+          a random visitor 🌍,
+          I hope you see not just projects 💻 — but a pattern 🔄: someone who doesn’t wait for permission ⏱️ to love ❤️,
+          learn 📘, fail ❌,
+          improve 🔧, and try again 🔁. If you're here reading this 👀, you're already part of my journey 🛤️. So thank
+          you 🙏.
+        </p>
+        <p>
+          As for the future 🔮? I don’t know where this road 🛣️ leads, but I know Who’s guiding me ☝️.
+          <br>Let’s see how far we can go 🚀, in sha' Allah 🤲.
+        </p>
+        <p>
+          Everything you see here — the projects 🖥️, the skills 🛠️, the supporters 👥, the failures 💔, the half-wins
+          🌓 and hard-earned
+          growth 🌳 — this is just the beginning 🌅. This page isn’t a finished portrait 🎨. It’s a moving mirror 🪞.
+          I’m updating it as
+          I evolve 🌀, because I believe in documenting the process 📔, not just the success 🏅.
+        </p>
+        <p>
+          Some of these words may sound like hyperbole 📢 — maybe they are. But not because I want to impress you 👔. I
+          write like
+          the person I’m becoming 🌱, not the one I used to be ⏮️. This portfolio is a future version of myself 🔮,
+          speaking through
+          the present ⏳. I’m not here to show off 🚫✨ — I’m here to remind myself who I’m supposed to be 🌟.
+        </p>
+        <p>
+          Come back sometime 🔄 — you might find a better version of me ✨ next time you scroll 📜.
+        </p>
+
+      </div>
+    </div>
+
+
 
     <nav class="section-nav">
       <a href="#">Home</a>
@@ -559,34 +741,28 @@
           🔎 Tip: Switch to full-screen mode to enjoy the video in its original, uncropped format.
         </h4>
         <div class="grid">
-  <!-- Special YouTube Video (insert later) -->
-  <!-- 🔥 Replace this with your special video iframe later -->
-  <!-- 🔥 Special Highlight Video (First) -->
-  <iframe src="https://www.youtube.com/embed/B9OQWSWSL4Y?start=5" loading="lazy" allowfullscreen></iframe>
-  <!-- <iframe src="YOUR_SPECIAL_VIDEO_IFRAME_HERE"></iframe> -->
-
-  <!-- Rest of the YouTube videos (sequence maintained) -->
-  <iframe src="https://www.youtube.com/embed/utsgYN05D_o?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/BIy3qUhRI8Y?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/eKGXu0iVAo4?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/IB50XRKjeRQ?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/MWzzQc7k-ok?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/VvNs6C7uqvg?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/O7CvCpiNLRk?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/BWINUj9dLY8?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/Krzj-NMYSDk?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/7PnF9Oyr1hM?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/Q_O8mV2sVPk?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/Rdrrq8epEl0?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/yEgOCIDrkHQ?start=5" loading="lazy" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/jfwXJwguxWc?start=5" loading="lazy" allowfullscreen></iframe>
-</div>
+          <iframe src="https://www.youtube.com/embed/a_yaN8EutSY" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/NzX7vJMCVCo" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/BIy3qUhRI8Y?start=1" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/utsgYN05D_o" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/eKGXu0iVAo4" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/MWzzQc7k-ok" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/VvNs6C7uqvg" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/O7CvCpiNLRk" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/BWINUj9dLY8" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/f_NyunBRQQY" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/tipNbDKREXE" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/FxMXOa6WIdE" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/MaBk1yD9MuI" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/uRcbYyRl1qI" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/n8r9QpuEF-I" loading="lazy" allowfullscreen></iframe>
+        </div>
 
       </div>
     </div>
     <nav class="section-nav">
-      <a href="#about">About Me</a>
       <a href="#">Home</a>
+      <a href="#about">About Me</a>
       <a href="#supporter">Supporter</a>
       <a href="#contact">Contact Me</a>
     </nav>
@@ -650,9 +826,9 @@
       </ul>
     </div>
     <nav class="section-nav">
+      <a href="#">Home</a>
       <a href="#about">About Me</a>
       <a href="#projects">Projects</a>
-      <a href="#">Home</a>
       <a href="#contact">Contact Me</a>
     </nav>
   </section>
@@ -684,14 +860,38 @@
       <h3>🧠 YouTube</h3>
       <a href="https://youtube.com/@blendit251" target="_blank">Blend_It</a>
     </div>
+    <div class="contact-block">
+      <h3>📸 Instagram</h3>
+      <a href="http://instagram.com/mhumor7" target="_blank">M.HumorKhan</a>
+    </div>
     <nav class="section-nav">
+      <a href="#">Home</a>
       <a href="#about">About Me</a>
       <a href="#projects">Projects</a>
       <a href="#supporter">Supporter</a>
-      <a href="#">Home</a>
     </nav>
 
   </section>
+  <script>
+    const btnPro = document.getElementById("btn-professional");
+    const btnChi = document.getElementById("btn-childish");
+    const proContent = document.getElementById("about-professional");
+    const chiContent = document.getElementById("about-childish");
+
+    btnPro.addEventListener("click", () => {
+      btnPro.classList.add("active");
+      btnChi.classList.remove("active");
+      proContent.classList.add("show");
+      chiContent.classList.remove("show");
+    });
+
+    btnChi.addEventListener("click", () => {
+      btnChi.classList.add("active");
+      btnPro.classList.remove("active");
+      chiContent.classList.add("show");
+      proContent.classList.remove("show");
+    });
+  </script>
 
 </body>
 
